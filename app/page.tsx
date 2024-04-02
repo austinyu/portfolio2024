@@ -1,33 +1,117 @@
-import AcmeLogo from '@/app/ui/acme-logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+// import PhotoGallery from "@/components/PhotoGallery";
 
-export default function Page() {
+// export default function Page() {
+//   return (
+//     <main className="flex min-h-screen flex-col p-6">
+//       <PhotoGallery/>
+//     </main>
+//   );
+// }
+
+import { useIsomorphicLayoutEffect } from "../utils";
+
+
+export default function Home() {
+
+  useIsomorphicLayoutEffect(() => {
+    stagger(
+      [textOne.current, textTwo.current, textThree.current, textFour.current],
+      { y: 40, x: -10, transform: "scale(0.95) skew(10deg)" },
+      { y: 0, x: 0, transform: "scale(1)" }
+    );
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        {/* <AcmeLogo /> */}
-      </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
-            </a>
-            , brought to you by Vercel.
+    <div className={`relative ${data.showCursor && "cursor-none"}`}>
+      {data.showCursor && <Cursor />}
+      <Head>
+        <title>{data.name}</title>
+      </Head>
+
+      <div className="gradient-circle"></div>
+      <div className="gradient-circle-bottom"></div>
+
+      <div className="container mx-auto mb-10">
+        <Header
+          handleWorkScroll={handleWorkScroll}
+          handleAboutScroll={handleAboutScroll}
+        />
+        <div className="laptop:mt-20 mt-10">
+          <div className="mt-5">
+            <h1
+              ref={textOne}
+              className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-4/5 mob:w-full laptop:w-4/5"
+            >
+              {data.headerTaglineOne}
+            </h1>
+            <h1
+              ref={textTwo}
+              className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+            >
+              {data.headerTaglineTwo}
+            </h1>
+            <h1
+              ref={textThree}
+              className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+            >
+              {data.headerTaglineThree}
+            </h1>
+            <h1
+              ref={textFour}
+              className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+            >
+              {data.headerTaglineFour}
+            </h1>
+          </div>
+
+          <Socials className="mt-2 laptop:mt-5" />
+        </div>
+        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
+          <h1 className="text-2xl text-bold">Work.</h1>
+
+          <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
+            {data.projects.map((project) => (
+              <WorkCard
+                key={project.id}
+                img={project.imageSrc}
+                name={project.title}
+                description={project.description}
+                onClick={() => window.open(project.url)}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
+          <h1 className="tablet:m-10 text-2xl text-bold">Services.</h1>
+          <div className="mt-5 tablet:m-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
+            {data.services.map((service, index) => (
+              <ServiceCard
+                key={index}
+                name={service.title}
+                description={service.description}
+              />
+            ))}
+          </div>
+        </div>
+        {/* This button should not go into production */}
+        {process.env.NODE_ENV === "development" && (
+          <div className="fixed bottom-5 right-5">
+            <Link href="/edit">
+              <Button type="primary">Edit Data</Button>
+            </Link>
+          </div>
+        )}
+        <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
+          <h1 className="tablet:m-10 text-2xl text-bold">About.</h1>
+          <p className="tablet:m-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
+            {data.aboutpara}
           </p>
-          <Link
-            href="/login"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
-          >
-            <span>Log in</span> <ArrowRightIcon className="w-5 md:w-6" />
-          </Link>
         </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here */}
-        </div>
+        <Footer />
       </div>
-    </main>
+    </div>
   );
 }
+
+
