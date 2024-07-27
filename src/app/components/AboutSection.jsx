@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 
 const TabButton = ({ active, selectTab, children }) => {
-    const buttonClasses = active ? 'text-white border-b border-purple-500' 
+    const buttonClasses = active ? 'text-white border-b border-secondary-500' 
         : 'text-[#ADB7BE] hover:text-white';
 
     return (

@@ -47,7 +47,7 @@ const ProjectCard = ({ imgUrl, title, description, gitUrl, previewUrl }) => {
 
 const ProjectTag = ( {name, onClick, isSelected} ) => {
   const buttonStyle = isSelected 
-    ? 'text-white border-purple-500' 
+    ? 'text-white border-secondary-500' 
     : 'text-[#ADB7BE] border-slate-600 hover:border-white';
   return (
     <button 

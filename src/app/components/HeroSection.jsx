@@ -6,15 +6,16 @@ import { TypeAnimation } from 'react-type-animation';
 
 const HeroSection = () => {
   return (
-    <section>
-      <div className='grid grid-cols-1 sm:grid-cols-12'>
-        <div className='col-span-7 place-self-center text-center sm:text-left'>
+    <section className='lg:py-16'>
+      <div className='grid grid-cols-1 sm:grid-cols-12 justify-self-start'>
+        <div className='col-span-8 place-self-center text-center sm:text-left'>
           <h1 className='
-            text-white mb-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold
+            text-white mb-4 text-4xl sm:text-5xl 
+            lg:text-8xl lg:leading-normal font-extrabold
           '>
             <span className='
               text-transparent bg-clip-text 
-              bg-gradient-to-r from-purple-400 to-pink-600
+              bg-gradient-to-r from-primary-400 to-secondary-600
             '>
               Hi! I am Austin
             </span>
@@ -43,14 +44,15 @@ const HeroSection = () => {
           <div>
             <button className='
               px-6 py-3 w-full sm:w-fit rounded-full mr-4
-              bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500
+              bg-gradient-to-br
+              from-primary-500 via-secondary-500 to-secondary-500
               hover:bg-slate-200 text-white
             '>
               Hire me
             </button>
             <button className='
                 px-1 py-1 w-full sm:w-fit rounded-full 
-                bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 
+                bg-gradient-to-br from-primary-500 via-secondary-500 to-secondary-500 
                 hover:bg-slate-800 text-white mt-3
               '>
               <span className='
