@@ -51,7 +51,7 @@ const EmailSection = () => {
       '></div>
       <div className='z-10'>
         <h5 className='text-xl font-bold text-white my-2'>
-          Let's Connect
+          {`Let's Connect`}
         </h5>
         <p className='text-[#ADB7BE] mb-4 max-w-md'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
